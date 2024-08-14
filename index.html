@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .order-container {
+            background-color: white;
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .order-header h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .order-header .status {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .status-tracker {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .status-tracker .step {
+            text-align: center;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .status-tracker .step:not(:last-child):after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background-color: #dcdcdc;
+            z-index: -1;
+        }
+
+        .status-tracker .step.active:after {
+            background-color: #007bff;
+        }
+
+        .status-tracker .circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #dcdcdc;
+            margin: 0 auto 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .status-tracker .step.active .circle {
+            background-color: #007bff;
+        }
+
+        .order-info {
+            margin-bottom: 30px;
+        }
+
+        .order-info .info-item {
+            margin-bottom: 15px;
+        }
+
+        .order-info .info-item label {
+            font-weight: bold;
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .order-info .info-item input, .order-info .info-item a {
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .order-info .info-item input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #333;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+        }
+
+        .item-list {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .item-list .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .item-list .item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .item-list .item-info {
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+
+        .item-list .item-info h4 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .item-list .item-info span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .item-list .price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="order-container">
+        <div class="order-header">
+            <h2>Order Details #A23D4587</h2>
+            <div class="status">SHIPPING</div>
+        </div>
+
+        <div class="status-tracker">
+            <div class="step active">
+                <div class="circle">1</div>
+                <div>Order Confirmed</div>
+                <small>8:00 AM, Feb 8, 2023</small>
+            </div>
+            <div class="step active">
+                <div class="circle">2</div>
+                <div>Pick Up</div>
+            </div>
+            <div class="step">
+                <div class="circle">3</div>
+                <div>Proses</div>
+                <!-- <small>Estimated date: Feb 15, 2023</small> -->
+            </div>
+            <div class="step">
+                <div class="circle">1</div>
+                <div>To Deliver</div>
+                <!-- <small>8:00 AM, Feb 8, 2023</small> -->
+            </div>
+            <div class="step">
+                <div class="circle">2</div>
+                <div>Delivered</div>
+            </div>
+            <div class="step">
+                <div class="circle">3</div>
+                <div>Payment</div>
+                <!-- <small>Estimated date: Feb 15, 2023</small> -->
+            </div>
+        </div>
+
+        <div class="order-info">
+            <div class="info-item">
+                <label>Courier Name</label>
+                <input type="text" value="Bambang Santosa" readonly>
+            </div>
+            <div class="info-item">
+                <label>Tracking Number</label>
+                <input type="text" value="SSA4569AEF4592" readonly>
+            </div>
+            <div class="info-item">
+                <label>Shipment Tracking URL</label>
+                <a href="https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do">Track your shipment</a>
+            </div>
+        </div>
+
+        <div class="item-list">
+            <div class="item">
+                <img src="img/laundry-2.jpeg" alt="Image">
+                <div class="item-info">
+                    <h4>Cuci Basah</h4>
+                    <span>1x Cuci Basah</span>
+                </div>
+                <div class="price">Rp. 10.000</div>
+            </div>
+            <div class="item">
+                <img src="img/laundry-3.jpeg" alt="Product Image">
+                <div class="item-info">
+                    <h4>Setrika Saja</h4>
+                    <span>1x Setrika Saja</span>
+                </div>
+                <div class="price">Rp. 8000</div>
+            </div>
+        </div>
+
+        <div class="total">
+            Total: Rp. 18.000
+        </div>
+    </div>
+</body>
+</html>
